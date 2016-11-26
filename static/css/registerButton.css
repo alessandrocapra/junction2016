@@ -205,6 +205,17 @@ body{
 
 }
 
+#myModal{
+  height:500px;
+  padding:20px;
+}
+
+#generatedCode{
+  width:100%;
+  margin:10px;
+  min-height: 50px;
+}
+
 .name{
   font-size: 3em;
   text-align: center;
