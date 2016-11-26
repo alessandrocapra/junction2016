@@ -6,9 +6,25 @@ body {
     font-size:1.8em;
 }
 
+@font-face {
+    font-family: 'Averta';
+    src: url('../fonts/TW-Averta-Regular.eot');
+    src: url('../fonts/TW-Averta-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/TW-Averta-Regular.woff2') format('woff2'), url('../fonts/TW-Averta-Regular.woff') format('woff'), url('../fonts/TW-Averta-Regular.ttf') format('truetype');
+    font-weight: 500
+}
+
 h1, h2, h3 {
     font-family: 'Oswald', sans-serif;
     font-weight:400;
+}
+
+a.button.transferwise {
+	display: inline-block;
+	padding:0.3em 0.5em;
+
+    font-family: "Averta", sans-serif;
+	color: #fff;
+	background-color: #2E4369;
 }
 
 header h1 {
