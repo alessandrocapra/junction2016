@@ -1,0 +1,2 @@
+bottle==0.12.10
+requests==2.12.1
