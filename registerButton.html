@@ -13,6 +13,11 @@
 
 </head>
 <body>
+  <div class="fullscreen-bg">
+    <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+        <source src="background-video.mp4" type="video/mp4">
+    </video>
+</div>
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -26,14 +31,14 @@ $(document).ready(function(){
 });
 </script>
 
+<img src="logo1.png" class="logo"/>
 <div class="generate-button">
   <div class="info">
-    <img src="logo.png" class="logo"/>
     <img class="userImage" src="pic.jpg"/>
-    <h1 class="welcome">Welcome user!</h1>
-    <h6 class="details">Espoo, Finland.</h6>
+    <h2 class="welcome">Welcome</h2>
+    <h3 class="name">John!</h3>
   </div>
-  <button id="getButtonCode"  class="btn btn-info">Get the fucking button!</button>
+  <button id="getButtonCode"  class="btn btn-info">Generate a button!</button>
   <textarea id="generatedCode"></textarea>
   <button id="copyStuff" onClick="copyStuff()" class="btn btn-success">Copy</button>
 
