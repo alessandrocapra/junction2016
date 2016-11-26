@@ -1,14 +1,17 @@
 from bottle import Bottle, run, request, template, response
 import requests
 import json
+import qrcode
+from PIL import Image
+
 
 app = Bottle()
 
 
 @app.route('/', method='GET')
 def homepage():
+   #img = qrcode.make('TODO add link')
    return template('index.html', code='', access_token='')
-
 
 @app.route('/token', method='GET')
 def get_token():
@@ -25,4 +28,3 @@ def get_token():
    return template('index.html', access_token=json.loads(resp.text).get('access_token'), code='')
 
 run(app, host='127.0.0.1', port=8000)
-
