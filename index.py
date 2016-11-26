@@ -65,6 +65,10 @@ def send_eot(filename):
 def buttonize():
     return "It works!"
 
+@app.route('/video/<filename:re:.*\.mp4>')
+def send_png(filename):
+   return static_file(filename, root='static/video', mimetype='video/mp4')
+
 @app.route('/qr', method='GET')
 def get_image():
 
