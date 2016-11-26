@@ -10,7 +10,7 @@ app = Bottle()
 
 @app.route('/', method='GET')
 def homepage():
-   return template('index.html', access_token='', targetAccount='')
+   return template('index.html', access_token='', targetAccount='', sourceAccounts='')
 
 
 @app.route('/webshop', method='GET')
@@ -21,22 +21,24 @@ def create():
 @app.route('/donate', method='GET')
 def get_donate():
    code = request.GET.get('code')
-   targetAccount = request.GET.get('targetAccount')
+   targetAccountId = request.GET.get('targetAccount')
    print(code)
    data = {
       'grant_type': 'authorization_code',
       'client_id': 'f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e',
       'code': code,
-      'redirect_uri': 'http://localhost:8000/donate?targetAccount=' + targetAccount
+      'redirect_uri': 'http://localhost:8000/donate?targetAccount=' + targetAccountId
    }
-   respToken = requests.post('https://test-restgw.transferwise.com/oauth/token',
+   resp = requests.post('https://test-restgw.transferwise.com/oauth/token',
       data=data, auth=('f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e', '534cda42-719c-4b26-86c2-c96b7cb03437'))
+   access_token = json.loads(resp.text).get('access_token')
+
    
 
-   def get_profileid(respToken):
+   def get_profileid(access_token):
       headers = {
          'accept': "application/json",
-         'authorization': "Bearer " + respToken
+         'authorization': "Bearer " + access_token
       }
 
       respProfiles = requests.get("https://test-restgw.transferwise.com/v1/profiles", headers=headers)
@@ -52,37 +54,57 @@ def get_donate():
 
 
 
-   def get_accounts(respToken):
-      profileid = get_profileid(respToken)
+   def get_accounts(access_token, profileid):
+
       headers = {
          'accept': "application/json",
-         'authorization': "Bearer " + respToken 
+         'authorization': "Bearer " + access_token 
       }
 
-      respAccounts = request.get("https://test-restgw.transferwise.com/v1/accounts?profile="+profileid, headers=headers)
+      respAccounts = requests.get("https://test-restgw.transferwise.com/v1/accounts?profile=" + str(profileid), headers=headers)
       
+      accounts = []
       for a in json.loads(respAccounts.text):
-         pprint.pprint(a);
+         accounts.append({'currency': a.get('currency'),
+                        'accountNumber': a.get('details').get('accountNumber')})
+      return accounts
 
-   get_accounts(respToken)
-   #getAccounts 
-   sourceAccounts = []
+   profileid = get_profileid(access_token)
 
-   sourceAccount = ''
-   sourceCurrency = ''
-   sourceAmount = 0
+   sourceAccounts = get_accounts(access_token, profileid)
 
-   targetCurrency = ''
+   print(sourceAccounts)
 
-   message = ''
+   # selected from form
+   sourceAccount = sourceAccounts[0].get('accountNumber')
+   sourceCurrency = sourceAccounts[0].get('currency')
+
+   print('sourceAccount', sourceAccount)
+   print('sourceCurrency', sourceCurrency)
+
+   sourceAmount = 100
+
+
+   headers = {
+         'accept': "application/json",
+         'authorization': "Bearer " + access_token 
+      }
+
+   resp = requests.get("https://test-restgw.transferwise.com/v1/accounts/" + str(targetAccountId), headers=headers)
+
+
+   target_account = json.loads(resp.text)
+   targetCurrency = target_account.get('currency')
+   print('targetCurrency', targetCurrency)
+
+   message = 'Test sjssj'
    
    
-   return template('index.html', access_token=json.loads(resp.text).get('access_token'), targetAccount=targetAccount)
+   return template('index.html', access_token=access_token, targetAccount=targetAccountId, sourceAccounts=sourceAccounts)
 
 
 @app.route('/css/<filename:re:.*\.css>')
 def send_css(filename):
-   print(filename)
    return static_file(filename, root='static/css', mimetype='text/css')
 
 @app.route('/img/<filename:re:.*\.jpg>')
