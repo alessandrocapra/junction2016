@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Generate button</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="registerButton.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+  <!--script src="registerButton.js" type="text/javascript"></script -->
+
+</head>
+<body>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#getButtonCode").click(function(){
+      $.get("http://127.0.0.1:8000/getButton", function (req, res) {
+        $('#generatedCode').val(res);
+        $('#generatedCode').css("display", "block");
+        $('#copyStuff').css("display", "block");
+      });
+    });
+});
+</script>
+
+<div class="generate-button">
+  <div class="info">
+    <img src="logo.png" class="logo"/>
+    <img class="userImage" src="pic.jpg"/>
+    <h1 class="welcome">Welcome user!</h1>
+    <h6 class="details">Espoo, Finland.</h6>
+  </div>
+  <button id="getButtonCode"  class="btn btn-info">Get the fucking button!</button>
+  <textarea id="generatedCode"></textarea>
+  <button id="copyStuff" onClick="copyStuff()" class="btn btn-success">Copy</button>
+
+</div>
+
+</body>
+</html>
