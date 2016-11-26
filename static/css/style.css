@@ -14,17 +14,20 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: 'Oswald', sans-serif;
-    font-weight:400;
+    font-family: 'Averta', sans-serif;
+    font-weight:700;
 }
 
 a.button.transferwise {
-	display: inline-block;
-	padding:0.3em 0.5em;
+    display: inline-block;
+    padding: 0.5em 1em;
 
     font-family: "Averta", sans-serif;
-	color: #fff;
-	background-color: #2E4369;
+    font-weight: 700;
+    color: #fff;
+    background: #2E4369;
+
+    border-radius: 20px;
 }
 
 header h1 {
@@ -73,4 +76,6 @@ footer {
 	margin-top:1.5em;
 	padding:1.5em;
 	border-top: 2px solid rgba(0,0,0,0.3);
+
+
 }

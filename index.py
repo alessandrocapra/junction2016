@@ -45,6 +45,21 @@ def send_jpg(filename):
 def send_png(filename):
    return static_file(filename, root='static/img', mimetype='img/png')
 
+@app.route('/fonts/<filename:re:.*\.woff>')
+def send_woff(filename):
+   return static_file(filename, root='static/fonts')
+
+@app.route('/fonts/<filename:re:.*\.woff2>')
+def send_woff2(filename):
+   return static_file(filename, root='static/fonts')
+
+@app.route('/fonts/<filename:re:.*\.ttf>')
+def send_ttf(filename):
+   return static_file(filename, root='static/fonts')
+
+@app.route('/fonts/<filename:re:.*\.eot>')
+def send_eot(filename):
+   return static_file(filename, root='static/fonts')
 
 @app.route('/getButton', method='GET')
 def buttonize():
