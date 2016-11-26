@@ -20,6 +20,14 @@ def create():
 
 @app.route('/donate', method='GET')
 def get_donate():
+
+@app.route('/create-button', method='GET')
+def create():
+   code = request.GET.get('code')
+   return template('create-button.html')
+
+@app.route('/token', method='GET')
+def get_token():
    code = request.GET.get('code')
    target = request.GET.get('target')
    targetAccountId = target.split('_')[0]
