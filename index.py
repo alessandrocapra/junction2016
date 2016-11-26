@@ -10,8 +10,14 @@ app = Bottle()
 
 @app.route('/', method='GET')
 def homepage():
+
    #img = qrcode.make('TODO add link')
    return template('index.html', code='', access_token='')
+
+@app.route('/webshop', method='GET')
+def create():
+   code = request.GET.get('code')
+   return template('webshop.html')
 
 @app.route('/token', method='GET')
 def get_token():
