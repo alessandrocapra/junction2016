@@ -17,6 +17,11 @@ def create():
    code = request.GET.get('code')
    return template('webshop.html')
 
+@app.route('/create-button', method='GET')
+def create():
+   code = request.GET.get('code')
+   return template('create-button.html')
+
 @app.route('/token', method='GET')
 def get_token():
    code = request.GET.get('code')
