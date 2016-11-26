@@ -1,23 +1,25 @@
 body{
-  background-color: #00C6FF;
   height: 100%;
   width: 100%;
   position:relative;
   text-align: center;
+  background-image: url("createButtonBackground.jpg");
+  background-size: cover;
 }
 
+/*white box*/
 .generate-button{
   position: relative;
   margin:auto;
-
+  margin-top: 30px;
+  font-family: sans-serif;
   bottom:0;
   left:0;
   right:0;
   height:60%;
   width:50%;
   border-radius: 20px;
-  background-color: white;
-  top:70px;
+  background-color: rgba(17,24,35,0.7);
   padding:30px;
   border-color: #1A237E;
   border style:solid;
@@ -25,15 +27,19 @@ body{
   display:block;
 }
 
+
 .info{
   text-align: center;
-  display:block;
+  display:inline-block;
   position: relative;
+  color: white;
 }
 .userImage{
   height:200px;
   border-radius:50%;
   width:200px;
+  display:block;
+  margin:auto;
 }
 
 .logo{
@@ -41,11 +47,29 @@ body{
   border-radius: 20px;
   display: block;
   width:150px;
+  margin:auto;
+  margin-top: 40px;
+}
+
+.welcome{
+  font-size: 3em;
+  text-align: right;
+  display: block;
+  margin-top: 5%;
+  font-family: sans-serif;
+  color: white;
 }
 
 #getButtonCode{
-
+height:50px;
+width: 300px;
+font-family: sans-serif;
+font-weight: bolder;
+font-size: 2em;
+display: block;
+margin:auto;
 }
+
 
 #generatedCode{
   display:none;
@@ -53,4 +77,5 @@ body{
 
 #copyStuff{
   display: none;
+
 }
