@@ -16,24 +16,26 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
+
+
     $("#getButtonCode").click(function(){
-      $.get("http://127.0.0.1:8000/getButton", function (req, res) {
-        $('#generatedCode').val(res);
+      $.get("http://127.0.0.1:8000/getButton", function (req, res, data) {
+        $('#generatedCode').val(data);
         $('#generatedCode').css("display", "block");
         $('#copyStuff').css("display", "block");
-      });
+      }, text);
     });
 });
 </script>
 
 <div class="generate-button">
   <div class="info">
-    <img src="./img/logo.png" class="logo"/>
+    <img src="./img/logo1.png" class="logo"/>
     <img class="userImage" src="./img/pic.jpg"/>
     <h1 class="welcome">Welcome user!</h1>
     <h6 class="details">Espoo, Finland.</h6>
   </div>
-  <button id="getButtonCode"  class="btn btn-info">Get the fucking button!</button>
+  <button id="getButtonCode"  class="btn btn-info">Generate Button</button>
   <textarea id="generatedCode"></textarea>
   <button id="copyStuff" onClick="copyStuff()" class="btn btn-success">Copy</button>
 
