@@ -8,10 +8,14 @@ app = Bottle()
 
 @app.route('/', method='GET')
 def homepage():
-   import os;
    dirname = os.path.dirname(os.path.abspath(__file__))
    return template('index.html', access_token='', dirname=dirname)
 
+
+@app.route('/webshop', method='GET')
+def create():
+   code = request.GET.get('code')
+   return template('webshop.html')
 
 @app.route('/token', method='GET')
 def get_token():
@@ -41,5 +45,9 @@ def send_jpg(filename):
 def send_png(filename):
    return static_file(filename, root='static/img', mimetype='img/png')
 
+
+@app.route('/getButton', method='GET')
+def buttonize():
+    return "It works!"
 
 run(app, host='127.0.0.1', port=8000)
