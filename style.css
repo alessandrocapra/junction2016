@@ -52,3 +52,9 @@ header ul li {
     padding-left:0;
     padding-right:0;
 }
+
+footer {
+    margin-top:1.5em;
+    padding:1.5em;
+    border-top: 2px solid rgba(0,0,0,0.3);
+}
