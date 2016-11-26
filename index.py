@@ -4,12 +4,13 @@ import json
 import qrcode
 from PIL import Image
 from io import BytesIO
+import pprint
 
 app = Bottle()
 
 @app.route('/', method='GET')
 def homepage():
-   return template('index.html', access_token='')
+   return template('index.html', access_token='', targetAccount='')
 
 
 @app.route('/webshop', method='GET')
@@ -17,19 +18,66 @@ def create():
    code = request.GET.get('code')
    return template('webshop.html')
 
-@app.route('/token', method='GET')
-def get_token():
+@app.route('/donate', method='GET')
+def get_donate():
    code = request.GET.get('code')
+   targetAccount = request.GET.get('targetAccount')
    print(code)
    data = {
       'grant_type': 'authorization_code',
       'client_id': 'f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e',
       'code': code,
-      'redirect_uri': 'http://127.0.0.1:8000/token'
+      'redirect_uri': 'http://localhost:8000/donate?targetAccount=' + targetAccount
    }
-   resp = requests.post('https://test-restgw.transferwise.com/oauth/token',
+   respToken = requests.post('https://test-restgw.transferwise.com/oauth/token',
       data=data, auth=('f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e', '534cda42-719c-4b26-86c2-c96b7cb03437'))
-   return template('index.html', access_token=json.loads(resp.text).get('access_token'))
+   
+
+   def get_profileid(respToken):
+      headers = {
+         'accept': "application/json",
+         'authorization': "Bearer " + respToken
+      }
+
+      respProfiles = requests.get("https://test-restgw.transferwise.com/v1/profiles", headers=headers)
+
+      for p in json.loads(respProfiles.text):
+         if p['type'] == 'personal':
+            return p['id']
+      
+      print ('No profile')
+      return None
+
+
+
+
+
+   def get_accounts(respToken):
+      profileid = get_profileid(respToken)
+      headers = {
+         'accept': "application/json",
+         'authorization': "Bearer " + respToken 
+      }
+
+      respAccounts = request.get("https://test-restgw.transferwise.com/v1/accounts?profile="+profileid, headers=headers)
+      
+      for a in json.loads(respAccounts.text):
+         pprint.pprint(a);
+
+   get_accounts(respToken)
+   #getAccounts 
+   sourceAccounts = []
+
+   sourceAccount = ''
+   sourceCurrency = ''
+   sourceAmount = 0
+
+   targetCurrency = ''
+
+   message = ''
+   
+   
+   return template('index.html', access_token=json.loads(resp.text).get('access_token'), targetAccount=targetAccount)
 
 
 @app.route('/css/<filename:re:.*\.css>')
