@@ -1,0 +1,12 @@
+<DOCTYPE HTML!>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+  <a href="https://test-restgw.transferwise.com/oauth/authorize?response_type=code&client_id=f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e&redirect_uri=http://127.0.0.1:8000/token">Donate</a>
+  %if code:
+  	<p>code: {{code}}</p>
+  %end
+</body>
+</html>
