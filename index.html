@@ -5,10 +5,6 @@
   <link rel='stylesheet' href="./css/style.css"
 </head>
 <body>
-	%if dirname:
-		<img src="{{dirname}}/IMG_1648.jpg">
-	%end
-	<!-- <img src={{dirname}}"/IMG_1648.jpg"/> -->
   <a href="https://test-restgw.transferwise.com/oauth/authorize?response_type=code&client_id=f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e&redirect_uri=http://127.0.0.1:8000/token">Donate</a>
   %if access_token:
   	<p>access_token: {{access_token}}</p>
