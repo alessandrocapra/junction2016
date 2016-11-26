@@ -10,6 +10,11 @@ def homepage():
    code = request.GET.get('code')
    return template('index.html', code=code)
 
+@app.route('/webshop', method='GET')
+def create():
+   code = request.GET.get('code')
+   return template('webshop.html')
+
 
 @app.route('/token', method='GET')
 def get_token():
