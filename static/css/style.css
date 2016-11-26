@@ -19,8 +19,9 @@ h1, h2, h3 {
 }
 
 a.button.transferwise {
-    display: inline-block;
-    padding: 0.5em 1em;
+    /*display: inline-block;*/
+    /*width:80%;*/
+    padding: 0.6em 1.3em;
 
     font-family: "Averta", sans-serif;
     font-weight: 700;
@@ -28,6 +29,11 @@ a.button.transferwise {
     background: #2E4369;
 
     border-radius: 20px;
+}
+
+a.button.transferwise img {
+    width:7%;
+    padding-right:0.5em;
 }
 
 header h1 {
