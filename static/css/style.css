@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald|Raleway');
+
+body {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size:1.8em;
+}
+
+h1, h2, h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight:400;
+}
+
+header h1 {
+    font-size:4em;
+    display: inline-block;
+    margin:0;
+    padding:0.5em 0;
+}
+
+header ul {
+    list-style-type: none;
+    padding: 3.5em 0;
+    display: inline-block;
+    float: right;
+}
+
+header ul li {
+    display: inline-block;
+    margin: 0 0 0 1.5em;
+
+    font-size:1.3em;
+    font-weight:700;
+    text-transform: uppercase;
+}
+
+.promo {
+    height:375px;
+    width: 100%;
+    margin-bottom: 2em;
+}
+.promo-img {
+    background-image: url("img/construction.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100%;
+}
+
+/* Overriding bootstrap */
+.container-fluid {
+    padding-left:0;
+    padding-right:0;
+}
+
+footer {
+    margin-top:1.5em;
+    padding:1.5em;
+    border-top: 2px solid rgba(0,0,0,0.3);
+}
