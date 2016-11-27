@@ -4,6 +4,9 @@ body {
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-size:1.8em;
+    background-image: url("../img/background_shop.jpg") !important;
+    background-size: cover;
+
 }
 
 @font-face {
@@ -16,6 +19,21 @@ body {
 h1, h2, h3 {
     font-family: 'Averta', sans-serif;
     font-weight:700;
+}
+
+h4{
+  font-family: 'Averta', sans-serif;
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-top: 0.8em;
+
+}
+
+h6{
+  font-family: 'Averta', sans-serif;
+  font-size: 0.8em;
+  font-weight: 599;
+
 }
 
 a.button.transferwise {
@@ -32,7 +50,7 @@ a.button.transferwise {
 }
 
 a.button.transferwise img {
-    width:7%;
+    width:10%;
     padding-right:0.5em;
 }
 
@@ -59,6 +77,11 @@ header ul li {
     text-transform: uppercase;
 }
 
+.title{
+  text-align: left;
+  margin-left: 10%;
+}
+
 .promo {
     height:375px;
     width: 100%;
@@ -68,14 +91,42 @@ header ul li {
     background-image: url("../img/construction.jpg");
     background-position: center center;
     background-repeat: no-repeat;
-    background-size:cover;
+    width: 100%;
     height: 100%;
 }
+
+.backers{
+  text-align: left;
+  background-color: white;
+  width: 40%;
+  display: inline;
+
+  }
 
 /* Overriding bootstrap */
 .container-fluid {
 	padding-left:0;
 	padding-right:0;
+}
+.main-body{
+  margin:auto;
+  width: 90%;
+  background-color: rgba(175, 175, 175, 0.7);
+  padding-bottom: 2em;
+}
+.project-text{
+  margin-left: 0.2em;
+  text-align: justify;
+  width: 87%;
+}
+
+.donate-title {
+  margin-bottom: 2%;
+  width:20%;
+}
+
+.right-container {
+  margin-bottom: 1em;
 }
 
 footer {
