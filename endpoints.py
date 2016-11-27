@@ -1,6 +1,8 @@
 import json
 import qrcode
 import requests
+
+import private_variables
 import services
 
 from bottle import Bottle, run, request, template, response
@@ -8,6 +10,8 @@ from io import BytesIO
 
 app = Bottle()
 
+client_id = private_variables.client_id
+client_secret = private_variables.client_secret
 
 @app.route('/', method='GET')
 def webshop():
@@ -35,7 +39,7 @@ def get_donate():
     def auth(code):
         data = {
             'grant_type': 'authorization_code',
-            'client_id': 'f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e',
+            'client_id': client_id,
             'code': code,
             'redirect_uri': 'http://localhost:8000/donate?target={target_acc_id}_{target_country}_{target_currency}_'
                             '{target_acc_number}_{target_sort_code}_{target_first_name}_{target_last_name}'.format(
@@ -45,7 +49,7 @@ def get_donate():
         }
         resp = requests.post('https://test-restgw.transferwise.com/oauth/token',
                              data=data,
-                             auth=('f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e', '534cda42-719c-4b26-86c2-c96b7cb03437'))
+                             auth=(client_id, client_secret))
         return json.loads(resp.text).get('access_token')
 
     access_token = auth(code)
