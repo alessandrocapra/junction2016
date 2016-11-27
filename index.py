@@ -31,7 +31,7 @@ def get_donate():
    code = request.GET.get('code')
    target = request.GET.get('target')
    targetAccountId = target.split('_')[0]
-   targetCountry = target.split('_')[0]
+   targetCountry = target.split('_')[1]
    targetCurrency = target.split('_')[2]
    targetAccountNumber = target.split('_')[3]
    targetSortCode = target.split('_')[4]
@@ -43,7 +43,7 @@ def get_donate():
       'grant_type': 'authorization_code',
       'client_id': 'f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e',
       'code': code,
-      'redirect_uri': 'http://localhost:8000/donate?target=' + targetAccountId + '_' + targetCurrency
+      'redirect_uri': 'http://localhost:8000/donate?target=3995210_GB_GBP_38285680_309648_Martin_Borek'
    }
    resp = requests.post('https://test-restgw.transferwise.com/oauth/token',
       data=data, auth=('f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e', '534cda42-719c-4b26-86c2-c96b7cb03437'))
@@ -87,8 +87,13 @@ def get_donate():
    print(sourceAccounts)
 
    # selected from form
-   sourceAccount = sourceAccounts[3].get('account_id')
-   sourceCurrency = sourceAccounts[3].get('currency')
+   for account in sourceAccounts:
+      if account.get('currency') == 'EUR':
+         sourceAccount = account.get('account_id')
+         sourceCurrency = account.get('currency')
+         break
+   # sourceAccount = sourceAccounts[3].get('account_id')
+   # sourceCurrency = sourceAccounts[3].get('currency')
 
    print('sourceAccount', sourceAccount)
    print('sourceCurrency', sourceCurrency)
@@ -109,6 +114,8 @@ def get_donate():
           'content-type': "application/json"
           }
 
+      # import ipdb; ipdb.set_trace()
+
       resp = requests.post("https://test-restgw.transferwise.com/v1/quotes", data=payload, headers=headers)
       return json.loads(resp.text).get('id')
 
@@ -116,8 +123,25 @@ def get_donate():
 
    print('quote_id', quote_id)
 
+   def create_recipient_account(access_token, targetFirstName, targetLastName, targetCountry, targetCurrency, targetAccountNumber, targetSortCode):
+      payload = "{\"accountHolderName\":\"" + targetFirstName + " " + targetLastName + "\",\"business\":\"null\",\
+                  \"country\":\"" + targetCountry + "\",\"currency\":\"" + targetCurrency + "\",\"type\":\"sort_code\", \
+                  \"details\":{\"legalType\": \"PRIVATE\", \"accountNumber\":" + targetAccountNumber + ", \
+                  \"sortCode\":" + str(targetSortCode) + "}}"
+
+      headers = {
+          'accept': "application/json",
+          'authorization': "Bearer " + access_token,
+          'content-type': "application/json"
+          }
+
+      resp = requests.post("https://test-restgw.transferwise.com/v1/accounts", data=payload, headers=headers)
+      return json.loads(resp.text).get('id')
+
+   targetRecipientId = create_recipient_account(access_token, targetFirstName, targetLastName, targetCountry, targetCurrency, targetAccountNumber, targetSortCode)
+
    def create_transfer(access_token, source_account, target_account, quote_id, message):
-      payload = "{\"sourceAccount\":" + str(source_account) + ",\"targetAccount\":" + target_account + ",\"quote\":" + str(quote_id) + ",\
+      payload = "{\"sourceAccount\":" + str(source_account) + ",\"targetAccount\":" + str(target_account) + ",\"quote\":" + str(quote_id) + ",\
                   \"reference\":\"Early\",\"payInMethod\":\"transfer\"}"
       print('payload', payload)
 
@@ -128,8 +152,10 @@ def get_donate():
           }
 
       resp = requests.post("https://test-restgw.transferwise.com/v1/transfers", data=payload, headers=headers)
+      return json.loads(resp.text)
 
-   create_transfer(access_token, sourceAccount, targetAccountId, quote_id, message)
+   final_transaction = create_transfer(access_token, sourceAccount, targetRecipientId, quote_id, message)
+   print('transaction_details', final_transaction)
    
    return template('index.html', access_token=access_token, targetAccount=targetAccountId, sourceAccounts=sourceAccounts)
 
