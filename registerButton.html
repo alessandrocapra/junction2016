@@ -21,13 +21,17 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#getButtonCode").click(function(){
-      $.get("http://127.0.0.1:8000/getButton", function (req, res, data) {
+      $.get("http://127.0.0.1:8000/getButton", function (req, res) {
         var htmlForButton = "<a href=\"#0\" style=\"padding: 0.6em 1.3em; font-family: \"Averta\", sans-serif; font-weight: 700; color: #fff; background: #2E4369; border-radius: 20px;\" class=\"button transferwise\"><img src=\"./img/logo.png\" alt=\"flag-logo\">DonateWise</a>";
         $('#generatedCode').val(htmlForButton);
         $('#generatedCode').css("display", "block");
         $('#copyStuff').css("display", "block");
-      });
+        var url = "http://127.0.0.1:8000/qr?url="+ "facebook.com"
+        $('#qrcode-holder').html("<img src =\"" + url + "\" />");
+
     });
+
+});
 });
 </script>
 
@@ -44,7 +48,7 @@ $(document).ready(function(){
 
 
 
-  </div>
+
   <button id="getButtonCode"  class="btn btn-info" data-toggle="modal" data-target="#myModal">Generate now!</button>
 
 
@@ -63,6 +67,7 @@ $(document).ready(function(){
       </div>
       <div class="modal-body">
         <textarea id="generatedCode"></textarea>
+        <div id="qrcode-holder"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -71,7 +76,7 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
-</div>
+
 
 </body>
 </html>
