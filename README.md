@@ -1,4 +1,10 @@
-#The Button
+#DonateWise
+
+Winner of the "Moving Money Without Borders by Transferwise" challenge @ Junction 2016
+
+[Devpost](https://devpost.com/software/donatewise)
+
+### Setup
 
 Create a virtual environment:
 
