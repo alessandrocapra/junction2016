@@ -14,6 +14,24 @@ body {
 h1, h2, h3 {
     font-family: 'Averta', sans-serif;
     font-weight:700;
+    color: white;
+}
+
+p{
+  color: white;
+
+}
+
+#currency{
+color: white;
+font-weight: 700;
+
+}
+
+.everything{
+
+  margin: auto;
+    margin-top: 250px;
 }
 
 button {
@@ -96,7 +114,7 @@ footer {
 
 /* Create button page */
 header#create-page {
-    background: #262626;
+    background: transparent;
     padding:2em 0;
     margin-bottom:2em;
 }
@@ -108,7 +126,7 @@ header#create-page a {
 }
 
 header#create-page img {
-    width:3%;
+    width:15%;
     margin-right:0.2em;
 }
 
@@ -142,6 +160,46 @@ header#create-page img {
     text-transform: uppercase;
 }
 
-button#confirm-transfer {
-    margin-top:2em;
+button#confirm-transfer{
+  height:80px;
+  width: 400px;
+  font-family: sans-serif;
+  background-color: rgba(10,10,50,1);
+  color: #00C6FF;
+  font-size: 1.3em;
+  display: block;
+  margin:auto;
+  font-weight: bold;
+  text-align: center;
+  border-color: #00C6FF;
+  border-width: 5px;
+
+}
+
+button#confirm-transfer:hover{
+  background-color:#00C6FF;
+  color: #232F49;
+}
+
+
+/* video */
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+    background-color: black;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.65;
 }
