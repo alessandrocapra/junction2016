@@ -4,6 +4,9 @@ body {
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-size:1.8em;
+    background-image: url("../img/background_shop.jpg") !important;
+    background-size: cover;
+
 }
 
 @font-face {
@@ -18,16 +21,19 @@ h1, h2, h3 {
     font-weight:700;
 }
 
-button {
-    display: block;
-    margin: 0 auto;
-    padding:1em 1.5em;
-    border: 0;
-    text-transform: uppercase;
-    border-radius:18px;
+h4{
+  font-family: 'Averta', sans-serif;
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-top: 0.8em;
 
-    color: #fff;
-    background: #2E4369;
+}
+
+h6{
+  font-family: 'Averta', sans-serif;
+  font-size: 0.8em;
+  font-weight: 599;
+
 }
 
 a.button.transferwise {
@@ -44,7 +50,7 @@ a.button.transferwise {
 }
 
 a.button.transferwise img {
-    width:7%;
+    width:10%;
     padding-right:0.5em;
 }
 
@@ -71,6 +77,11 @@ header ul li {
     text-transform: uppercase;
 }
 
+.title{
+  text-align: left;
+  margin-left: 10%;
+}
+
 .promo {
     height:375px;
     width: 100%;
@@ -80,66 +91,48 @@ header ul li {
     background-image: url("../img/construction.jpg");
     background-position: center center;
     background-repeat: no-repeat;
-    background-size:cover;
+    width: 100%;
     height: 100%;
 }
+
+.backers{
+  text-align: left;
+  background-color: white;
+  width: 40%;
+  display: inline;
+
+  }
 
 /* Overriding bootstrap */
 .container-fluid {
 	padding-left:0;
 	padding-right:0;
 }
+.main-body{
+  margin:auto;
+  width: 90%;
+  background-color: rgba(175, 175, 175, 0.7);
+  padding-bottom: 2em;
+}
+.project-text{
+  margin-left: 0.2em;
+  text-align: justify;
+  width: 87%;
+}
+
+.donate-title {
+  margin-bottom: 2%;
+  width:20%;
+}
+
+.right-container {
+  margin-bottom: 1em;
+}
 
 footer {
 	margin-top:1.5em;
 	padding:1.5em;
 	border-top: 2px solid rgba(0,0,0,0.3);
-}
 
-/* Create button page */
-header#create-page {
-    background: #262626;
-    padding:2em 0;
-    margin-bottom:2em;
-}
 
-header#create-page a {
-    color: #fff;
-    text-decoration: none;
-    font-size:2.5em;
-}
-
-header#create-page img {
-    width:3%;
-    margin-right:0.2em;
-}
-
-.inputs select, .inputs input {
-    display: block;
-    margin: 1.5em auto;
-    padding:0.5em 1em;
-
-    width:20em;
-
-    color: #000;
-}
-
-.inputs select option {
-    padding:0.5em 1em;
-}
-
-.inputs input#amount {
-    display: inline-block;
-    width: 37%;
-    margin-right:0.8em;
-}
-
-.inputs input#amount + span {
-    display: inline-block;
-    font-size:0.8em;
-}
-
-#currency {
-    position: relative;
-    text-transform: uppercase;
 }

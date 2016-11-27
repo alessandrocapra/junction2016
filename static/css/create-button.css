@@ -1,0 +1,147 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size:1.8em;
+}
+
+@font-face {
+    font-family: 'Averta';
+    src: url('../fonts/TW-Averta-Regular.eot');
+    src: url('../fonts/TW-Averta-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/TW-Averta-Regular.woff2') format('woff2'), url('../fonts/TW-Averta-Regular.woff') format('woff'), url('../fonts/TW-Averta-Regular.ttf') format('truetype');
+    font-weight: 500
+}
+
+h1, h2, h3 {
+    font-family: 'Averta', sans-serif;
+    font-weight:700;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    padding:1em 1.5em;
+    border: 0;
+    text-transform: uppercase;
+    border-radius:18px;
+
+    color: #fff;
+    background: #2E4369;
+}
+
+a.button.transferwise {
+    /*display: inline-block;*/
+    /*width:80%;*/
+    padding: 0.6em 1.3em;
+
+    font-family: "Averta", sans-serif;
+    font-weight: 700;
+    color: #fff;
+    background: #2E4369;
+
+    border-radius: 20px;
+}
+
+a.button.transferwise img {
+    width:7%;
+    padding-right:0.5em;
+}
+
+header h1 {
+    font-size:4em;
+    display: inline-block;
+    margin:0;
+    padding:0.5em 0;
+}
+
+header ul {
+    list-style-type: none;
+    padding: 3.5em 0;
+    display: inline-block;
+    float: right;
+}
+
+header ul li {
+    display: inline-block;
+    margin: 0 0 0 1.5em;
+
+    font-size:1.3em;
+    font-weight:700;
+    text-transform: uppercase;
+}
+
+.promo {
+    height:375px;
+    width: 100%;
+    margin-bottom: 2em;
+}
+.promo-img {
+    background-image: url("../img/construction.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100%;
+}
+
+/* Overriding bootstrap */
+.container-fluid {
+	padding-left:0;
+	padding-right:0;
+}
+
+footer {
+	margin-top:1.5em;
+	padding:1.5em;
+	border-top: 2px solid rgba(0,0,0,0.3);
+}
+
+/* Create button page */
+header#create-page {
+    background: #262626;
+    padding:2em 0;
+    margin-bottom:2em;
+}
+
+header#create-page a {
+    color: #fff;
+    text-decoration: none;
+    font-size:2.5em;
+}
+
+header#create-page img {
+    width:3%;
+    margin-right:0.2em;
+}
+
+.inputs select, .inputs input {
+    display: block;
+    margin: 1em auto;
+    padding:0.5em 1em;
+
+    width:20em;
+
+    color: #000;
+}
+
+.inputs select option {
+    padding:0.5em 1em;
+}
+
+.inputs input#amount {
+    display: inline-block;
+    width: 37%;
+    margin-right:0.8em;
+}
+
+.inputs input#amount + span {
+    display: inline-block;
+    font-size:0.8em;
+}
+
+#currency {
+    position: relative;
+    text-transform: uppercase;
+}
+
+button#confirm-transfer {
+    margin-top:2em;
+}
