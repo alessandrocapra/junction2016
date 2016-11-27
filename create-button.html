@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create customized button for donations</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header id="create-page">
+        <div class="container-fluid text-center">
+            <a href="#0"><img src="./img/logo.png" alt="logo">TransferWise</a>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 text-center">
+                    <h2>Receiver info</h2>
+                    <p>Name</p>
+                </div>
+                <div class="col-xs-12 col-sm-9 text-center inputs">
+                    <h2>Transfer details</h2>
+                    <form action="">
+                        <div class="form-group">
+                            <select name="accounts" id="accounts">
+                                <option value="GBP">Value 1</option>
+                                <option value="EUR">Value 2</option>
+                                <option value="USD">Value 3</option>
+                            </select>
+                            <div>
+                                <input id="amount" type="text" placeholder="Amount">
+                                <span id="currency">-</span>
+                            </div>
+                            <input type="text" placeholder="Message (max. length 8 characters)" maxlength="8">
+                            <button type="submit" id="confirm-transfer">Confirm transfer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('#currency').html($('select#accounts option:selected').val());
+            console.log($('select#accounts option:selected').val());
+
+            $('select#accounts').change(function(){
+                var currency = $('select#accounts option:selected').val();
+                $('#currency').html(currency);
+            })
+        })
+    </script>
+</body>
+</html>

@@ -8,6 +8,7 @@ import pprint
 
 app = Bottle()
 
+
 @app.route('/', method='GET')
 def homepage():
    return template('index.html', access_token='', targetAccount='', sourceAccounts='')
@@ -18,12 +19,24 @@ def create():
    code = request.GET.get('code')
    return template('webshop.html')
 
+
+@app.route('/create-button', method='GET')
+def create():
+   code = request.GET.get('code')
+   return template('create-button.html')
+
+
 @app.route('/donate', method='GET')
 def get_donate():
    code = request.GET.get('code')
    target = request.GET.get('target')
    targetAccountId = target.split('_')[0]
-   targetCurrency = target.split('_')[1]
+   targetCountry = target.split('_')[0]
+   targetCurrency = target.split('_')[2]
+   targetAccountNumber = target.split('_')[3]
+   targetSortCode = target.split('_')[4]
+   targetFirstName = target.split('_')[5]
+   targetLastName = target.split('_')[6]
    
    print(code)
    data = {
@@ -74,8 +87,8 @@ def get_donate():
    print(sourceAccounts)
 
    # selected from form
-   sourceAccount = sourceAccounts[0].get('account_id')
-   sourceCurrency = sourceAccounts[0].get('currency')
+   sourceAccount = sourceAccounts[3].get('account_id')
+   sourceCurrency = sourceAccounts[3].get('currency')
 
    print('sourceAccount', sourceAccount)
    print('sourceCurrency', sourceCurrency)
@@ -88,6 +101,7 @@ def get_donate():
    def create_quote(access_token, profileid, sourceCurrency, sourceAmount, targetCurrency):
       payload = "{\"profile\":" + str(profileid) + ",\"rateType\":\"FIXED\", \
                   \"source\":\"" + sourceCurrency + "\",\"sourceAmount\":" + str(sourceAmount) + ",\"target\":\"" + targetCurrency + "\"}"
+
 
       headers = {
           'accept': "application/json",
@@ -104,7 +118,7 @@ def get_donate():
 
    def create_transfer(access_token, source_account, target_account, quote_id, message):
       payload = "{\"sourceAccount\":" + str(source_account) + ",\"targetAccount\":" + target_account + ",\"quote\":" + str(quote_id) + ",\
-                  \"reference\":\"Early Christmas gift\",\"payInMethod\":\"transfer\"}"
+                  \"reference\":\"Early\",\"payInMethod\":\"transfer\"}"
       print('payload', payload)
 
       headers = {
