@@ -21,22 +21,23 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-3 text-center">
                     <h2>Receiver info</h2>
-                    <p>Name</p>
+                    <p>Save the Wells</p>
+                    <p>GBP</p>
                 </div>
                 <div class="col-xs-12 col-sm-9 text-center inputs">
                     <h2>Transfer details</h2>
-                    <form action="">
+                    <form action="http://localhost:8000/submit_donation" method="post">
                         <div class="form-group">
                             <select name="accounts" id="accounts">
-                                <option value="GBP">Value 1</option>
-                                <option value="EUR">Value 2</option>
-                                <option value="USD">Value 3</option>
+                                %for account in source_accounts:
+                                    <option value="{{account['account_id']}}-{{account['currency']}}">{{account['account_id']}}-{{account['currency']}}</option>
+                                %end
                             </select>
                             <div>
-                                <input id="amount" type="text" placeholder="Amount">
+                                <input name="amount" id="amount" type="number" placeholder="Amount">
                                 <span id="currency">-</span>
                             </div>
-                            <input type="text" placeholder="Message (max. length 8 characters)" maxlength="8">
+                            <input type="text" name="message" id="message" placeholder="Message (max. length 8 characters)" maxlength="8">
                             <button type="submit" id="confirm-transfer">Confirm transfer</button>
                         </div>
                     </form>
@@ -53,13 +54,13 @@
     <script>
         $(document).ready(function(){
 
-            $('#currency').html($('select#accounts option:selected').val());
-            console.log($('select#accounts option:selected').val());
+            $('#currency').html($('select#accounts option:selected').val().split('-')[1]);
 
             $('select#accounts').change(function(){
                 var currency = $('select#accounts option:selected').val();
-                $('#currency').html(currency);
-            })
+                $('#currency').html(currency.split('-')[1]);
+            });
+
         })
     </script>
 </body>
