@@ -127,10 +127,7 @@ def get_donate():
           'content-type': "application/json"
           }
 
-      import ipdb; ipdb.set_trace();
       resp = requests.post("https://test-restgw.transferwise.com/v1/transfers", data=payload, headers=headers)
-      print('sahsah')
-      print('ashasj')
 
    create_transfer(access_token, sourceAccount, targetAccountId, quote_id, message)
    

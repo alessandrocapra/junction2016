@@ -8,7 +8,7 @@
     <title>Create customized button for donations</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/create-button.css">
 </head>
 <body>
     <header id="create-page">
@@ -28,16 +28,16 @@
                     <form action="">
                         <div class="form-group">
                             <select name="accounts" id="accounts">
-                                <option value="gbp">Value 1</option>
-                                <option value="eur">Value 2</option>
-                                <option value="usd">Value 3</option>
+                                <option value="GBP">Value 1</option>
+                                <option value="EUR">Value 2</option>
+                                <option value="USD">Value 3</option>
                             </select>
                             <div>
                                 <input id="amount" type="text" placeholder="Amount">
                                 <span id="currency">-</span>
                             </div>
-                            <input type="text" placeholder="Message..">
-                            <button type="submit">Confirm transfer</button>
+                            <input type="text" placeholder="Message (max. length 8 characters)" maxlength="8">
+                            <button type="submit" id="confirm-transfer">Confirm transfer</button>
                         </div>
                     </form>
                 </div>
