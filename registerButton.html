@@ -22,13 +22,13 @@
 $(document).ready(function(){
     $("#getButtonCode").click(function(){
       $.get("http://127.0.0.1:8000/getButton", function (req, res) {
-        var htmlForButton = "<a href=\"#0\" style=\"padding: 0.6em 1.3em; font-family: \"Averta\", sans-serif; font-weight: 700; color: #fff; background: #2E4369; border-radius: 20px;\" class=\"button transferwise\"><img src=\"./img/logo.png\" alt=\"flag-logo\">DonateWise</a>";
+        var htmlForButton = "<a href=\"" + res + "\" style=\"padding: 0.6em 1.3em; font-family: \"Averta\", sans-serif; font-weight: 700; color: #fff; background: #2E4369; border-radius: 20px;\" class=\"button transferwise\"><img src=\"./img/logo.png\" alt=\"flag-logo\">DonateWise</a>";
         $('#generatedCode').val(htmlForButton);
         $('#generatedCode').css("display", "block");
         $('#copyStuff').css("display", "block");
         var url = "http://127.0.0.1:8000/qr?url="+ "facebook.com"
         $('#qrcode-holder').html("<img src =\"" + url + "\" />");
-
+        $('#downloadbutton').html("<a download=\"QR.jpg\" href=\""+url+ "\" title=\"ImageName\"> Download QR </a>" );
     });
 
 });
@@ -71,7 +71,8 @@ $(document).ready(function(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" onclick="copyToClipboard()" class="btn btn-primary">Copy to clipboard!</button>
+        <button type="button" onclick="copyToClipboard()" id="downloadbutton" class="btn btn-success"></button>
+        <button type="button" onclick="copyToClipboard()" class="btn btn-primary">Copy code to clipboard</button>
       </div>
     </div>
   </div>

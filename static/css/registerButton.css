@@ -248,6 +248,10 @@ text-align: center;
   color: #232F49;
 }
 
+#downloadbutton a{
+  text-decoration: none;
+}
+
 #generatedCode{
   display:none;
 }
