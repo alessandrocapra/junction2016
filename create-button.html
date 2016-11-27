@@ -28,13 +28,13 @@
                     <form action="">
                         <div class="form-group">
                             <select name="accounts" id="accounts">
-                                <option value="gpb">Value 1</option>
-                                <option value="Value2">Value 2</option>
-                                <option value="Value3">Value 3</option>
+                                <option value="gbp">Value 1</option>
+                                <option value="eur">Value 2</option>
+                                <option value="usd">Value 3</option>
                             </select>
                             <div>
                                 <input id="amount" type="text" placeholder="Amount">
-                                <span class="currency">EUR</span>
+                                <span id="currency">-</span>
                             </div>
                             <input type="text" placeholder="Message..">
                             <button type="submit">Confirm transfer</button>
@@ -51,11 +51,16 @@
     </script>
 
     <script>
-        $(document).ready(
-                $('select#accounts').change(function(){
-                    var currency = $("select#accounts option:selected");
-                })
-        )
+        $(document).ready(function(){
+
+            $('#currency').html($('select#accounts option:selected').val());
+            console.log($('select#accounts option:selected').val());
+
+            $('select#accounts').change(function(){
+                var currency = $('select#accounts option:selected').val();
+                $('#currency').html(currency);
+            })
+        })
     </script>
 </body>
 </html>
