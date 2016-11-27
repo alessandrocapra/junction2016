@@ -141,5 +141,5 @@ header#create-page img {
 
 #currency {
     position: relative;
-
+    text-transform: uppercase;
 }
