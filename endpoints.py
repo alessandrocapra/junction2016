@@ -11,12 +11,12 @@ app = Bottle()
 
 @app.route('/', method='GET')
 def webshop():
-    return template('webshop.html')
+    return template('./static/html/webshop.html')
 
 
 @app.route('/create-button', method='GET')
 def create_button():
-    return template('create-button.html')
+    return template('./static/html/create-button.html')
 
 
 @app.route('/donate', method='GET')
@@ -88,7 +88,7 @@ def get_donate():
 
     source_accounts = get_accounts(access_token, profile_id, target_currency)
 
-    return template('donate.html', source_accounts=source_accounts)
+    return template('./static/html/donate.html', source_accounts=source_accounts)
 
 
 @app.route('/submit_donation', method='POST')
@@ -144,13 +144,13 @@ def process_donation():
     final_transaction = create_transfer(access_token, source_account, target_recipient_id, quote_id, message)
     print(final_transaction)
 
-    return template('success.html', transaction=final_transaction)
+    return template('./static/html/success.html', transaction=final_transaction)
 
 
 @app.route('/register', method='GET')
 def create():
     code = request.GET.get('code')
-    return template('registerButton.html')
+    return template('./static/html/registerButton.html')
 
 
 @app.route('/qr', method='GET')
