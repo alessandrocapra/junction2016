@@ -13,32 +13,64 @@
 
 </head>
 <body>
+  <div class="fullscreen-bg">
+    <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+        <source src="./video/background-video.mp4" type="video/mp4">
+    </video>
+</div>
 <script type="text/javascript">
 $(document).ready(function(){
-
-
-
     $("#getButtonCode").click(function(){
       $.get("http://127.0.0.1:8000/getButton", function (req, res, data) {
-        $('#generatedCode').val(data);
+        var htmlForButton = "<a href=\"#0\" style=\"padding: 0.6em 1.3em; font-family: \"Averta\", sans-serif; font-weight: 700; color: #fff; background: #2E4369; border-radius: 20px;\" class=\"button transferwise\"><img src=\"./img/logo.png\" alt=\"flag-logo\">DonateWise</a>";
+        $('#generatedCode').val(htmlForButton);
         $('#generatedCode').css("display", "block");
         $('#copyStuff').css("display", "block");
-      }, text);
+      });
     });
 });
 </script>
 
+<img src="./img/logo1.png" class="logo"/>
 <div class="generate-button">
   <div class="info">
-    <img src="./img/logo1.png" class="logo"/>
-    <img class="userImage" src="./img/pic.jpg"/>
-    <h1 class="welcome">Welcome user!</h1>
-    <h6 class="details">Espoo, Finland.</h6>
-  </div>
-  <button id="getButtonCode"  class="btn btn-info">Generate Button</button>
-  <textarea id="generatedCode"></textarea>
-  <button id="copyStuff" onClick="copyStuff()" class="btn btn-success">Copy</button>
 
+
+    <img class="userImage" src="./img/pic.jpg"/>
+
+    <h2 class="welcome">Welcome</h2>
+    <h3 class="name">John!</h3>
+  </div>
+
+
+
+  </div>
+  <button id="getButtonCode"  class="btn btn-info" data-toggle="modal" data-target="#myModal">Generate now!</button>
+
+
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Embed this in your website!</h4>
+      </div>
+      <div class="modal-body">
+        <textarea id="generatedCode"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" onclick="copyToClipboard()" class="btn btn-primary">Copy to clipboard!</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 </body>

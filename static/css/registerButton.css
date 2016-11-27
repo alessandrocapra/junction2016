@@ -56,7 +56,7 @@ body{
 #copyStuff{
   display: none;
 }
-*/
+
 
 body{
   height: 100%;
@@ -67,7 +67,7 @@ body{
   background-size: cover;
 }
 
-/*white box*/
+
 .generate-button{
   position: relative;
   margin:auto;
@@ -138,4 +138,143 @@ margin:auto;
 #copyStuff{
   display: none;
 
+}
+*/
+
+body{
+  height: 100%;
+  width: 100%;
+  position:relative;
+  text-align: center;
+  /*background-image: url("createButtonBackground.jpg");
+  background-size: cover;*/
+}
+
+/*white box*/
+.generate-button{
+  position: relative;
+  margin:auto;
+  margin-top: 30px;
+  font-family: sans-serif;
+  bottom:0;
+  left:0;
+  right:0;
+  height:60%;
+  width:50%;
+  border-radius: 20px;
+  background-color: rgba(255,255,255,0.0);
+  padding:30px;
+  /*border-color: #1A237E;
+  border style:solid;
+  border-width: 5px;*/
+  display:block;
+}
+
+
+.info{
+  text-align: center;
+  display:inline-block;
+  position: relative;
+  color: white;
+}
+.userImage{
+  height:55%;
+  border-radius:50%;
+  width:55%;
+  display:block;
+  margin:auto;
+}
+
+.logo{
+  height: 50px;
+  border-radius: 20px;
+  display: block;
+  width:200px;
+  margin:auto;
+  margin-top: 2%;
+}
+
+.welcome{
+  font-size: 3em;
+  text-align: center;
+  font-weight: bolder;
+  display: block;
+  margin-top: 5%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+
+}
+
+#myModal{
+  height:500px;
+  padding:20px;
+}
+
+#generatedCode{
+  width:100%;
+  margin:10px;
+  min-height: 50px;
+}
+
+.name{
+  font-size: 3em;
+  text-align: center;
+  display: block;
+
+  font-weight: lighter;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  margin-bottom:5%;
+}
+
+#getButtonCode{
+height:80px;
+width: 400px;
+font-family: sans-serif;
+background-color: rgba(10,10,20,0.4);
+border-color: #00C6FF;
+border-width: 5px;
+color: #00C6FF;
+font-size: 2.5em;
+display: block;
+margin:auto;
+font-weight: bold;
+text-align: center;
+
+}
+
+#getButtonCode:hover{
+  background-color:#00C6FF;
+  color: #232F49;
+}
+
+#generatedCode{
+  display:none;
+}
+
+#copyStuff{
+  display: none;
+
+}
+
+/* video */
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+    background-color: black;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.65;
 }

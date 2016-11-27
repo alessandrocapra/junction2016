@@ -20,6 +20,12 @@ def create():
    return template('webshop.html')
 
 
+@app.route('/create-button', method='GET')
+def create():
+   code = request.GET.get('code')
+   return template('create-button.html')
+
+
 @app.route('/donate', method='GET')
 def get_donate():
    code = request.GET.get('code')
@@ -162,6 +168,10 @@ def send_eot(filename):
 @app.route('/getButton', method='GET')
 def buttonize():
     return "It works!"
+
+@app.route('/video/<filename:re:.*\.mp4>')
+def send_png(filename):
+   return static_file(filename, root='static/video', mimetype='video/mp4')
 
 @app.route('/qr', method='GET')
 def get_image():
