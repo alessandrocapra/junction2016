@@ -16,6 +16,6 @@ Install requirements:
 
 Start the ws:
 
-`python3 server.py`
+`python3 app/server.py`
 
 Navigate to `http://127.0.0.1:8000/`

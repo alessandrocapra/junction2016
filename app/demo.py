@@ -13,12 +13,12 @@ client_secret = private_variables.client_secret
 
 
 @app.route('/', method='GET')
-def webshop():
+def webshop_demo():
     return template('./static/html/webshop.html')
 
 
 @app.route('/donate', method='GET')
-def get_donate():
+def create_donation():
     code = request.GET.get('code')
     target = request.GET.get('target')
     target_account_id = target.split('_')[0]
