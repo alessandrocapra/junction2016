@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create customized button for donations</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8000/css/createButton.css">
+</head>
+<body>
+    <header id="create-page">
+        <div class="container-fluid text-center">
+            <a class="logo" href="#0"><img src="./img/logo1.png" alt="logo"></a>
+        </div>
+    </header>
+    <main>
+      <div class="fullscreen-bg">
+        <div class="fullscreen-bg">
+          <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+            <source src="./video/background-video.mp4" type="video/mp4">
+          </video>
+        <div class="everything">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 text-center">
+                    <h2>Receiver info</h2>
+                    <p>Save the Wells</p>
+                    <p>GBP</p>
+                </div>
+                <div class="col-xs-12 col-sm-9 text-center inputs">
+                    <h2>Transfer details</h2>
+                    <form action="http://localhost:8000/submit_donation" method="post">
+                        <div class="form-group">
+                            <select name="accounts" id="accounts">
+                                %for account in source_accounts:
+                                    <option value="{{account['account_id']}}-{{account['currency']}}">{{account['account_id']}}-{{account['currency']}}</option>
+                                %end
+                            </select>
+                            <div>
+                                <input name="amount" id="amount" type="number" placeholder="Amount">
+                                <span id="currency">-</span>
+                            </div>
+                            <input type="text" name="message" id="message" placeholder="Message (max. length 8 characters)" maxlength="8">
+                            <button type="submit" id="confirm-transfer">Confirm transfer</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+        </div>
+    </main>
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('#currency').html($('select#accounts option:selected').val().split('-')[1]);
+
+            $('select#accounts').change(function(){
+                var currency = $('select#accounts option:selected').val();
+                $('#currency').html(currency.split('-')[1]);
+            });
+
+        })
+    </script>
+</body>
+</html>
