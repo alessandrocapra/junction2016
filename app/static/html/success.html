@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Charity page</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <h1 class="title">Save the wells</h1>
+            <ul>
+                <li>Gallery</li>
+                <li>About</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+      <div class="main-body">
+        <div class="container-fluid promo">
+            <div class="promo-img"></div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                  <div class="project-text">
+                    <h2>Congratulations!</h2>
+                    <p>Your transfer has been created!</p>
+                    <p>Reference: {{transaction['reference']}}</p>
+                    <p>Status: {{transaction['status']}}</p>
+                </div>
+              </div>
+
+
+                <div class="col-xs-12 col-sm-4">
+                  <div class="right-container">
+                  <div class="donate-title">
+                    <h2>Donate</h2>
+                  </div>
+                </div>
+                    <a href="https://test-restgw.transferwise.com/oauth/authorize?response_type=code&client_id=f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e&redirect_uri=http://localhost:8000/donate?target=3995210_GB_GBP_38285680_309648_Martin_Borek"
+                    class="button transferwise"><img src="./img/logo.png" alt="flag-logo">DonateWise</a>
+                    <div class="backers">
+                      <h4>44</h4>
+                      <h6>Backers</h6>
+                      <h4>$12.000</h4>
+                      <h6>Pledged out of $135.000 goal</h6>
+                      <h4>26</h4>
+                      <h6>days left</h6>
+                    </div>
+                </div>
+                </div>
+        </div>
+      </div>
+    </main>
+</body>
+</html>
