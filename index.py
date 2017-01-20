@@ -26,6 +26,53 @@ def create():
    return template('create-button.html')
 
 
+def get_accounts(access_token, profileid):
+
+   headers = {
+      'accept': "application/json",
+      'authorization': "Bearer " + access_token 
+   }
+ 
+   respAccounts = requests.get("https://test-restgw.transferwise.com/v1/accounts?profile=" + str(profileid), headers=headers)
+  
+   accounts = []
+   for a in json.loads(respAccounts.text):
+      accounts.append({'currency': a.get('currency'),
+                     'accountNumber': a.get('details').get('accountNumber'),
+                     'account_id': a.get('id')})
+   return accounts
+
+def get_profileid(access_token):
+   headers = {
+      'accept': "application/json",
+      'authorization': "Bearer " + access_token
+   }
+
+   respProfiles = requests.get("https://test-restgw.transferwise.com/v1/profiles", headers=headers)
+
+   for p in json.loads(respProfiles.text):
+      if p['type'] == 'personal':
+         return p['id']
+  
+   print ('No profile')
+   return None
+
+def get_profile(access_token):
+   headers = {
+      'accept': "application/json",
+      'authorization': "Bearer " + access_token
+   }
+
+   respProfiles = requests.get("https://test-restgw.transferwise.com/v1/profiles", headers=headers)
+
+   for p in json.loads(respProfiles.text):
+      if p['type'] == 'personal':
+         return p
+
+   print ('No profile')
+   return None
+
+
 @app.route('/donate', method='GET')
 def get_donate():
    code = request.GET.get('code')
@@ -49,36 +96,6 @@ def get_donate():
       data=data, auth=('f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e', '534cda42-719c-4b26-86c2-c96b7cb03437'))
    access_token = json.loads(resp.text).get('access_token')
 
-   def get_profileid(access_token):
-      headers = {
-         'accept': "application/json",
-         'authorization': "Bearer " + access_token
-      }
-
-      respProfiles = requests.get("https://test-restgw.transferwise.com/v1/profiles", headers=headers)
-
-      for p in json.loads(respProfiles.text):
-         if p['type'] == 'personal':
-            return p['id']
-      
-      print ('No profile')
-      return None
-
-   def get_accounts(access_token, profileid):
-
-      headers = {
-         'accept': "application/json",
-         'authorization': "Bearer " + access_token 
-      }
-
-      respAccounts = requests.get("https://test-restgw.transferwise.com/v1/accounts?profile=" + str(profileid), headers=headers)
-      
-      accounts = []
-      for a in json.loads(respAccounts.text):
-         accounts.append({'currency': a.get('currency'),
-                        'accountNumber': a.get('details').get('accountNumber'),
-                        'account_id': a.get('id')})
-      return accounts
 
    profileid = get_profileid(access_token)
 
@@ -187,6 +204,39 @@ def get_image():
 @app.route('/register', method='GET')
 def create():
    code = request.GET.get('code')
-   return template('registerButton.html')
+   #if not code:
+   #   resp = requests.get('https://test-restgw.transferwise.com/oauth/authorize?response_type=code&client_id=f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e&redirect_uri=http://localhost:8000/register')
+   #code = request.GET.get('code')
+   data = {
+      'grant_type': 'authorization_code',
+      'client_id': 'f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e',
+      'code': code,
+      'redirect_uri': 'http://localhost:8000/register'
+   }
+   resp = requests.post('https://test-restgw.transferwise.com/oauth/token',
+      data=data, auth=('f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e', '534cda42-719c-4b26-86c2-c96b7cb03437'))
+   #import ipdb; ipdb.set_trace()
+   access_token = json.loads(resp.text).get('access_token')
+   print(access_token)
+
+   profileid = get_profileid(access_token)
+   profile = get_profile(access_token)
+
+   sourceAccounts = get_accounts(access_token, profileid)
+
+   #profileid = profile.get('details').get('firstName')
+   firstName = profile.get('details').get('firstName')
+   lastName = profile.get('details').get('lastName')
+   avatar = profile.get('details').get('avatar')
+   #sourceAccount = sourceAccounts[0].get('account_id')
+   currency = sourceAccounts[0].get('currency')
+   currency='GB'
+   country = sourceAccounts[0].get('country')
+   country='GBP'
+   number = sourceAccounts[0].get('id')
+   link = 'https://test-restgw.transferwise.com/oauth/authorize?response_type=code&client_id=f272f4a3-ecc1-44fe-b3f4-9a20e9433f4e&redirect_uri=http://localhost:8000/donate?target=3995210_'+country+'_'+currency+'_38285680_309648_'+firstName+'_'+lastName
+
+   #code = request.GET.get('code')
+   return template('registerButton.html', name=firstName+' '+lastName, link=link, avatar=avatar)
 
 run(app, host='127.0.0.1', port=8000)
